@@ -1,32 +1,22 @@
 #!/usr/bin/env python3
-""" Factorize as many possible into a product of 2 smaller numbers"""
 from sys import argv
-from multiprocessing import Pool
-
 with open(argv[1], "r") as f:
-        map(multi, f)
-        pool.close()
-def multi(x):
-    if (int(x) > 1):
-        if (int(x) % 2) is 0:
-            p = int(x) / 2
-            print("{}={}*2".format(x[:-1], int(p)))
-        elif (int(x) % 5) is 0:
-            p = int(x) / 5
-            print("{}={}*5".format(x[:-1], int(p)))
-        elif (int(x) % 3) is 0:
-            p = int(x) / 3
-            print("{}={}*3".format(x[:-1], int(p)))
-        elif (int(x) % 7) is 0:
-            p = int(x) / 7
-            print("{}={}*7".format(x[:-1], int(p)))
-        else:
-            n = int(x) ** 0.5
-            p = int(n) + 1
-            q = int(n)
-            while (p * q != int(x)):
-                if (p * q < int(x)):
-                p += 1
-            else:
-                q -= 1
-            print("{}={}*{}".format(x[:-1], int(p), int(q)))
+    for x in f:
+        y = int(x)
+        m = { 2, 3, 5, 7, 11, 13, 17, 19, 23, 29, 31, 37, 41, 43, 47, 53, 59, 61, 67, 71, 73, 79, 83, 89, 97}
+        for i in m:
+            if (y % i) is 0:
+                p = int(y / i)
+                q = i
+                print("{}={}*{}".format(y, p, q))
+                break
+        if i is 97:
+            n = int(y ** 0.5)
+            p = n + 1
+            q = n
+            while (p * q != y):
+                if (p * q < y):
+                    p += 1
+                else:
+                    q -= 1
+            print("{}={}*{}".format(y, p, q))
